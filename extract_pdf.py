@@ -1,5 +1,6 @@
 import sys
 import os
+import glob
 
 def extract_pdf_to_images(pdf_path, output_dir):
     try:
@@ -11,13 +12,16 @@ def extract_pdf_to_images(pdf_path, output_dir):
 
     if not os.path.exists(output_dir):
         os.makedirs(output_dir)
+    else:
+        # 清除舊的圖片
+        for f in glob.glob(os.path.join(output_dir, "*.jpg")):
+            os.remove(f)
 
     print(f"正在開啟 PDF: {pdf_path}")
     doc = fitz.open(pdf_path)
     
     for page_num in range(len(doc)):
         page = doc.load_page(page_num)
-        # 提高解析度 (zoom_x, zoom_y)
         zoom_x = 2.0  
         zoom_y = 2.0  
         mat = fitz.Matrix(zoom_x, zoom_y)
@@ -32,3 +36,4 @@ if __name__ == "__main__":
     pdf_path = "/Users/chad/Desktop/一頁網站/藍藻菌一頁式.pdf"
     output_dir = "/Users/chad/Desktop/一頁網站/assets"
     extract_pdf_to_images(pdf_path, output_dir)
+
