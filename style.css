@@ -1,0 +1,137 @@
+:root {
+    /* 質感奶茶色系色票 (Milk Tea Palette) */
+    --milk-tea-light: #F9F6F0; /* 奶蓋白 */
+    --milk-tea-base: #E8DCC4;  /* 經典奶茶 */
+    --milk-tea-dark: #C1A57B;  /* 焦糖色 */
+    --text-color: #5A4C3F;     /* 深焙咖啡色 */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--milk-tea-base);
+    color: var(--text-color);
+    /* 隱藏預設捲軸，讓畫面更乾淨 (可選) */
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+body::-webkit-scrollbar {
+    display: none; /* Chrome, Safari and Opera */
+}
+
+/* 捲動容器：改為自然滑順捲動 */
+.scroll-container {
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--milk-tea-base);
+}
+
+/* 每一頁投影片：無縫拼接 */
+.slide {
+    width: 100%;
+    max-width: 800px; /* 電腦版最大寬度，避免圖片大到太誇張，手機版則維持 100% */
+    display: flex;
+}
+
+/* 圖片樣式：保證無縫、不留白 */
+.slide img {
+    width: 100%;
+    height: auto;
+    display: block; /* 取消圖片底部的預設間隙 */
+}
+
+/* ====== 提示往下滑的浮動指標 ====== */
+.scroll-indicator {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    pointer-events: none; /* 不要擋住點擊 */
+    animation: fadeOut 2s ease-in-out infinite alternate;
+}
+
+.scroll-indicator p {
+    font-size: 0.85rem;
+    margin-top: 10px;
+    letter-spacing: 2px;
+    color: var(--text-color);
+    font-weight: 600;
+}
+
+/* 滑鼠圖示的 CSS 畫法 */
+.mouse {
+    width: 30px;
+    height: 50px;
+    border: 2px solid var(--text-color);
+    border-radius: 20px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+.wheel {
+    width: 4px;
+    height: 8px;
+    background-color: var(--text-color);
+    border-radius: 2px;
+    margin-top: 8px;
+    animation: scroll 1.5s infinite;
+}
+
+@keyframes scroll {
+    0% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(15px);
+        opacity: 0;
+    }
+}
+
+@keyframes fadeOut {
+    0% { opacity: 0.5; }
+    100% { opacity: 1; }
+}
+
+/* ====== 底部行動呼籲 (CTA) 區塊 ====== */
+.cta-section {
+    width: 100%;
+    max-width: 800px;
+    padding: 60px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--milk-tea-base);
+}
+
+.line-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: #06C755; /* LINE 的官方綠色，這樣客人最熟悉 */
+    color: #ffffff;
+    font-size: 1.25rem;
+    font-weight: 600;
+    padding: 16px 36px;
+    text-decoration: none;
+    border-radius: 50px; /* 圓角按鈕 */
+    box-shadow: 0 10px 20px rgba(6, 199, 85, 0.3);
+    transition: all 0.3s ease;
+}
+
+.line-btn:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 25px rgba(6, 199, 85, 0.4);
+}
+

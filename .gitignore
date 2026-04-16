@@ -1,0 +1,4 @@
+# Ignore PDF file to save Github space Since we already extracted the images
+*.pdf
+__pycache__/
+.DS_Store
